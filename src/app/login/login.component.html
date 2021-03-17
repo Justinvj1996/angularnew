@@ -1,0 +1,26 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4" style="font-size: xx-large;">Welcome to Fed Bank</div>
+        {{ain}}  <!-- component to view // string interpolation-->
+        <div class="col-4"></div>
+    </div>
+</div>
+<form>
+    <div class="mb-4 mx-5 mt-5">
+        <label for="exampleInputEmail1" class="form-label" style="color: rgb(7, 3, 3);">Account Number :</label>
+        <input type="text" [(ngModel)]="acno" name="acno" id="acno" class="form-control">
+        <div id="emailHelp" class="form-text">We'll never share your account number with anyone else.</div>
+    </div>
+    <div class="mb-4 mx-5 ">
+        <label for="exampleInputPassword1" class="form-label" style="color: rgb(7, 3, 3);">Password :</label>
+        <input type="password" [(ngModel)]="pwd" name="pwd" class="form-control" id="pwd">
+    </div>
+    <div class="mb-4 mx-5 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="button" (click)="login()" class="btn btn-primary mx-5 ">Submit</button>
+    <a href="">Registration</a>
+</form>
