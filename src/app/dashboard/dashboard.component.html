@@ -2,26 +2,55 @@
 
     <div class="row">
         <div class="col-4"></div>
-        <div class="col-4" style="font-size: xx-large;" >Welcome to Fed Bank</div>
+        <div class="col-4" style="font-size: xx-large;">Welcome {{this.dataService.currentUser}} to Fed Bank</div>
         <div class="col-4"></div>
     </div>
 </div>
-<form>
+
+<form [formGroup]="depositForm" (ngSubmit)="deposit()">
     <div class="mb-4 mx-5 mt-5">
         <label for="exampleInputEmail1" class="form-label" style="color:  rgb(7, 6, 6);">Account Number :</label>
-        <input type="text" id="acno" class="form-control">
-        <div id="emailHelp" class="form-text">We'll never share your account number with anyone else.</div>
+        <input type="text" formControlName="acno" name="acno" id="acno" class="form-control">
+        <div *ngIf="(this.depositForm.get('acno')?.touched || this.depositForm.get('acno')?.dirty)&&this.depositForm.get('acno')?.errors"
+            class="formText err">Invalid Account Number</div>
     </div>
     <div class="mb-4 mx-5 ">
-        <label for="exampleInputPassword1" class="form-label" style="color:  rgb(7, 6, 6);" >Password :</label>
-        <input type="password" class="form-control" id="pwd">
+        <label for="exampleInputPassword1" class="form-label" style="color:  rgb(7, 6, 6);">Password :</label>
+        <input type="password" formControlName="pwd" name="pwd" class="form-control" id="pwd">
+        <div *ngIf="(this.depositForm.get('pwd')?.touched || this.depositForm.get('pwd')?.dirty)&&this.depositForm.get('pwd')?.errors"
+            class="formText err">Invalid Password</div>
     </div>
     <div class="mb-4 mx-5 ">
-        <label for="exampleInputPassword1" class="form-label" style="color: rgb(7, 6, 6);" >Amount</label>
-        <input type="password" class="form-control" id="amt">
-    </div>
-    
-    <button type="button"  class="btn btn-primary mx-5 " >Withdraw</button>
-    <button type="button"  class="btn btn-primary mx-5 " >Deposit</button>
-</form>
+        <label for="exampleInputPassword1" class="form-label" style="color: rgb(7, 6, 6);">Amount</label>
+        <input type="text" formControlName="amt" name="amt" class="form-control" id="amt">
+        <div *ngIf="(this.depositForm.get('amt')?.touched || this.depositForm.get('amt')?.dirty)&&this.depositForm.get('amt')?.errors"
+            class="formText err">Invalid Data</div>
 
+    </div>
+
+    <button type="submit" class="btn btn-primary mx-5 ">Deposit</button>
+</form>
+<form [formGroup]="withdrawForm" (ngSubmit)="withdraw()">
+    <div class="mb-4 mx-5 mt-5">
+        <label for="exampleInputEmail1" class="form-label" style="color:  rgb(7, 6, 6);">Account Number :</label>
+        <input type="text" formControlName="acno" name="acno" id="acno" class="form-control">
+        <div *ngIf="(this.withdrawForm.get('acno')?.touched || this.withdrawForm.get('acno')?.dirty)&&this.withdrawForm.get('acno')?.errors"
+            class="formText err">Invalid Account Number</div>
+    </div>
+    <div class="mb-4 mx-5 ">
+        <label for="exampleInputPassword1" class="form-label" style="color:  rgb(7, 6, 6);">Password :</label>
+        <input type="password" formControlName="pwd" name="pwd" class="form-control" id="pwd">
+        <div *ngIf="(this.withdrawForm.get('pwd')?.touched || this.withdrawForm.get('pwd')?.dirty)&&this.withdrawForm.get('pwd')?.errors"
+            class="formText err">Invalid Password</div>
+    </div>
+    <div class="mb-4 mx-5 ">
+        <label for="exampleInputPassword1" class="form-label" style="color: rgb(7, 6, 6);">Amount</label>
+        <input type="text" formControlName="amt" name="amt" class="form-control" id="amt">
+        <div *ngIf="(this.withdrawForm.get('amt')?.touched || this.withdrawForm.get('amt')?.dirty)&&this.withdrawForm.get('amt')?.errors"
+            class="formText err">Invalid Data</div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary mx-5 ">Withdraw</button>
+
+</form>

@@ -1,3 +1,4 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
 <div class="container">
 
     <div class="row">
@@ -7,20 +8,24 @@
         <div class="col-4"></div>
     </div>
 </div>
-<form>
+
     <div class="mb-4 mx-5 mt-5">
         <label for="exampleInputEmail1" class="form-label" style="color: rgb(7, 3, 3);">Account Number :</label>
-        <input type="text" [(ngModel)]="acno" name="acno" id="acno" class="form-control">
-        <div id="emailHelp" class="form-text">We'll never share your account number with anyone else.</div>
+        <input type="text" formControlName="acno" name="acno" id="acno" class="form-control">
+        <div *ngIf="(this.loginForm.get('acno')?.touched || this.loginForm.get('acno')?.dirty)&&this.loginForm.get('acno')?.errors"
+        class="formText err">Invalid Account Number</div>
     </div>
     <div class="mb-4 mx-5 ">
         <label for="exampleInputPassword1" class="form-label" style="color: rgb(7, 3, 3);">Password :</label>
-        <input type="password" [(ngModel)]="pwd" name="pwd" class="form-control" id="pwd">
+        <input type="password" formControlName="pwd" name="pwd" class="form-control" id="pwd">
+        <div *ngIf="(this.loginForm.get('pwd')?.touched || this.loginForm.get('pwd')?.dirty)&&this.loginForm.get('pwd')?.errors"
+            class="formText err">Invalid Password</div>
     </div>
     <div class="mb-4 mx-5 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>
-    <button type="button" (click)="login()" class="btn btn-primary mx-5 ">Submit</button>
-    <a href="">Registration</a>
+    <button type="submit"  class="btn btn-primary mx-5 ">Submit</button>
+    <!-- (click)="login()" -->
+    <a routerLink="register">Registration</a>
 </form>

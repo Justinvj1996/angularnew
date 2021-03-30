@@ -1,27 +1,34 @@
-<div class="container">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="container">
 
-    <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4" style="font-size: xx-large;">Fed Bank Registration</div>
-       
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4" style="font-size: xx-large;">Fed Bank Registration</div>
 
-        <div class="col-4"></div>
+
+            <div class="col-4"></div>
+        </div>
     </div>
-</div>
-<form>
+
     <div class="mb-4 mx-5 mt-5">
         <label for="exampleInputEmail1" class="form-label" style="color: rgb(7, 3, 3);">Username :</label>
-        <input type="text" id="uname" class="form-control">
+        <input type="text" formControlName="uname" name="uname" id="uname" class="form-control">
+        <div *ngIf="(this.registerForm.get('uname')?.touched || this.registerForm.get('uname')?.dirty)&&this.registerForm.get('uname')?.errors"
+            class="formText err">Invalid Username</div>
     </div>
     <div class="mb-4 mx-5 mt-5">
         <label for="exampleInputEmail1" class="form-label" style="color: rgb(7, 3, 3);">Account Number :</label>
-        <input type="text" id="acno" class="form-control">
+        <input type="text" formControlName="acno" name="acno" id="acno" class="form-control">
+        <div *ngIf="(this.registerForm.get('acno')?.touched || this.registerForm.get('acno')?.dirty)&&this.registerForm.get('acno')?.errors"
+            class="formText err">Invalid Account Number</div>
     </div>
     <div class="mb-4 mx-5 ">
         <label for="exampleInputPassword1" class="form-label" style="color: rgb(7, 3, 3);">Password :</label>
-        <input type="password" class="form-control" id="pwd">
+        <input type="password" formControlName="pwd" name="pwd" class="form-control" id="pwd">
+        <div *ngIf="(this.registerForm.get('pwd')?.touched || this.registerForm.get('pwd')?.dirty)&&this.registerForm.get('pwd')?.errors"
+            class="formText err">Invalid Password</div>
     </div>
 
-    <button type="button" class="btn btn-primary mx-5 ">Register</button>
+    <button type="submit" class="btn btn-primary mx-5 ">Register</button>
 
 </form>
